@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+        }
+
+        .header {
+            background: #2563eb;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2563eb;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            padding: 12px;
+            border: none;
+            margin-top: 20px;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1e4ecb;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px 0;
+            background: #e5e7eb;
+            color: #555;
+            margin-top: 40px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="header">
+        <h1>My Django Website</h1>
+        <div class="nav">
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+            <a href="/login/">Login</a>
+            <a href="/register/">Register</a>
+        </div>
+    </div>
+
+    <div class="contact-container">
+        <h1>Contact Us</h1>
+
+        {% if message_sent %}
+            <p style="color: green; font-weight: bold; text-align:center;">
+                Your message has been sent successfully!
+            </p>
+        {% endif %}
+
+        <form method="POST" action="/contact/">
+            {% csrf_token %}
+
+            <label for="name">Your Name</label>
+            <input id="name" type="text" name="name" required>
+
+            <label for="email">Your Email</label>
+            <input id="email" type="email" name="email" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button class="btn" type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        © {{ year }} My Django Site — All Rights Reserved
+    </div>
+
+</body>
+</html>

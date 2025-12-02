@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background: #2563eb;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-container {
+            max-width: 420px;
+            background: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2563eb;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            padding: 12px;
+            border: none;
+            font-size: 18px;
+            border-radius: 6px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #1e4ecb;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px 0;
+            background: #e5e7eb;
+            color: #555;
+            margin-top: 40px;
+        }
+
+        .signup-text {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .signup-text a {
+            color: #2563eb;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>My Django Website</h1>
+        <div class="nav">
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+            <a href="/login/">Login</a>
+            <a href="/register/">Register</a>
+        </div>
+    </div>
+
+    <div class="login-container">
+        <h2>Login</h2>
+
+        {% if form.errors %}
+            <p style="color:red; text-align:center;">Invalid username or password</p>
+        {% endif %}
+
+        <form method="POST" action="/login/">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" required>
+
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" required>
+
+            <button class="btn" type="submit">Login</button>
+        </form>
+
+        <p class="signup-text">
+            Don't have an account? <a href="/register/">Register</a>
+        </p>
+    </div>
+
+    <div class="footer">
+        © {{ year }} My Django Site — All Rights Reserved
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background: #2563eb;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-container {
+            max-width: 500px;
+            background: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .register-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2563eb;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            padding: 12px;
+            border: none;
+            font-size: 18px;
+            border-radius: 6px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #1e4ecb;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px 0;
+            background: #e5e7eb;
+            color: #555;
+            margin-top: 40px;
+        }
+
+        .login-text {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .login-text a {
+            color: #2563eb;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>My Django Website</h1>
+        <div class="nav">
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+            <a href="/login/">Login</a>
+            <a href="/register/">Register</a>
+        </div>
+    </div>
+
+    <div class="register-container">
+        <h2>Create Account</h2>
+
+        {% if form.errors %}
+            <p style="color:red; text-align:center;">Please fix the errors and try again.</p>
+        {% endif %}
+
+        <form method="POST" action="/register/">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" required>
+
+            <label for="password1">Password</label>
+            <input id="password1" type="password" name="password1" required>
+
+            <label for="password2">Confirm Password</label>
+            <input id="password2" type="password" name="password2" required>
+
+            <button class="btn" type="submit">Register</button>
+        </form>
+
+        <p class="login-text">
+            Already have an account? <a href="/login/">Login</a>
+        </p>
+    </div>
+
+    <div class="footer">
+        © {{ year }} My Django Site — All Rights Reserved
+    </div>
+
+</body>
+</html>
